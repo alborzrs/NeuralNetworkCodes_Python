@@ -98,8 +98,8 @@ def compute_cost(A2, Y, parameters):
     m = Y.shape[1] # number of example
 
     # Compute the cross-entropy cost
-    logprobs = np.multiply(np.log(A2), Y)
-    ### END CODE HERE ###
+    logprobs = np.multiply(np.log(A2), Y) + np.multiply(np.log(1-A2), (1-Y))
+    cost = - (1/m) * np.sum(logprobs)
     
     cost = np.squeeze(cost)     # makes sure cost is the dimension we expect. 
                                 # E.g., turns [[17]] into 17 
@@ -161,7 +161,7 @@ def update_parameters(parameters, grads, learning_rate = 1.2):
     b1 = parameters["b1"]
     W2 = parameters["W2"]
     b2 = parameters["b2"]
-    ### END CODE HERE ###
+    
     
     # Retrieve each gradient from the dictionary "grads"
     dW1 = grads["dW1"]
